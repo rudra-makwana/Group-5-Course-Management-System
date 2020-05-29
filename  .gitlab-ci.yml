@@ -1,17 +1,29 @@
 variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
   GIT_STRATEGY: clone
 
 build:
   stage: build
-  tags:  dalfcs_gitlab_docker_ci
+  tags:
+    - dalfcs_gitlab_docker_ci
   image: gradle:alpine
   script: ./gradlew assemble
   only:
-      -develop
+      - develop
 
-test-deploy:
+test:
+  stage: test
+  tags:
+    - dalfcs_gitlab_docker_ci
+  image: gradle:alpine
+  script: ./gradlew check
+  only:
+    - develop
+
+deploy-on-test-server:
   stage: deploy
-  tags:  dalfcs_gitlab_docker_ci
+  tags:
+    - dalfcs_gitlab_docker_ci
   image: ruby:2.6
   script:
     -apt-get update -qy
@@ -19,4 +31,4 @@ test-deploy:
     -gem install dp
     -dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
   only:
-      -develop
+      - develop
