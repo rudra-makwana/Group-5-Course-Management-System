@@ -2,23 +2,29 @@ variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
   GIT_STRATEGY: clone
 
+before_script:
+  - chmod +x ./gradlew
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+
 build:
   stage: build
   tags:
-    - dalfcs_gitlab_docker_ci
+    - grad
   image: gradle:alpine
-  script: ./gradlew assemble
+  script: ./gradlew --build-cache assemble
   only:
-      - develop
+    refs:
+      - branches
 
 test:
   stage: test
   tags:
-    - dalfcs_gitlab_docker_ci
+    - grad
   image: gradle:alpine
   script: ./gradlew check
   only:
-    - develop
+    refs:
+      - branches
 
 deploy-on-test-server:
   stage: deploy
