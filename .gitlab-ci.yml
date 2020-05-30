@@ -34,7 +34,7 @@ deploy-on-test-server:
   script:
     - apt-get update -qy
     - apt-get install -y ruby-dev
-    - gem install dp
+    - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
   only:
       - develop
