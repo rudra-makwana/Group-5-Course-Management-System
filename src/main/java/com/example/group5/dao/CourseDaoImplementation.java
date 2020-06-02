@@ -12,7 +12,7 @@ public class CourseDaoImplementation implements CourseDao{
     @Override
     public void insertCourse(Course course) {
         try {
-            String insertStatement = "INSERT INTO "+SpringConfig.getObject().getCourseTableName()+" sVALUES ("+course.getCourseId()+","+course.getCourseName()+")";
+            String insertStatement = "INSERT INTO "+SpringConfig.getObject().getCourseTableName()+" VALUES ("+course.getCourseId()+","+course.getCourseName()+")";
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection(SpringConfig.getObject().getUrl(),SpringConfig.getObject().getUsername(), SpringConfig.getObject().getPassword());
             Statement statement = connection.createStatement();
