@@ -1,5 +1,6 @@
 package com.example.group5.dao;
 
+import com.example.group5.configure.SpringConfig;
 import com.example.group5.model.Course;
 
 import java.sql.*;
@@ -8,17 +9,12 @@ import java.util.List;
 
 public class CourseDaoImplementation implements CourseDao{
 
-    private String url = "jdbc:mysql://db-5308.cs.dal.ca/CSCI5308_5_TEST";
-    private String username="CSCI5308_5_TEST_USER";
-    private String password="CSCI5308_5_TEST_5570";
-    private String selectStatement = "SELECT * FROM CSCI5308_5_TEST.courses";
-
     @Override
     public void insertCourse(Course course) {
         try {
-            String insertStatement = "INSERT INTO CSCI5308_5_TEST.courses (courseName) VALUES ("+course.getCourseId()+","+course.getCourseName()+")";
+            String insertStatement = "INSERT INTO "+SpringConfig.getObject().getCourseTableName()+" sVALUES ("+course.getCourseId()+","+course.getCourseName()+")";
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(url, username, password);
+            Connection connection = DriverManager.getConnection(SpringConfig.getObject().getUrl(),SpringConfig.getObject().getUsername(), SpringConfig.getObject().getPassword());
             Statement statement = connection.createStatement();
             statement.executeUpdate(insertStatement);
             connection.close();
@@ -31,10 +27,11 @@ public class CourseDaoImplementation implements CourseDao{
     public List<Course> selectAllCourses() {
         List<Course> courses = new ArrayList<>();
         try {
+            String courseSelectStatement="SELECT * FROM "+SpringConfig.getObject().getCourseTableName();
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(url, username, password);
+            Connection connection = DriverManager.getConnection(SpringConfig.getObject().getUrl(),SpringConfig.getObject().getUsername(), SpringConfig.getObject().getPassword());
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(selectStatement);
+            ResultSet resultSet = statement.executeQuery(courseSelectStatement);
             while (resultSet.next()){
                 String courseId = resultSet.getString("idCourses");
                 String courseName = resultSet.getString("courseName");
