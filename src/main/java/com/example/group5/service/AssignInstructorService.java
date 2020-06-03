@@ -19,7 +19,7 @@ public class AssignInstructorService implements UserDao {
     @SuppressWarnings("deprecation")
     public void assignAsInstructor(User user, String courseID) {
         try {
-            String assignInstructorQuery = "INSERT INTO "+usersTableName+"VALUES ("+courseID+","+user.getBannerID()+", 1";
+            String assignInstructorQuery = "INSERT INTO "+usersTableName+"VALUES ("+courseID+","+user.getBannerID()+", 1)";
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url, username, password);
             Statement statement = connection.createStatement();;

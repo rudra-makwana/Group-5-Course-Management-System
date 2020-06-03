@@ -11,7 +11,7 @@ import java.util.List;
 public class CourseService implements CourseDao {
 
     String url = "jdbc:mysql://db-5308.cs.dal.ca/CSCI5308_5_TEST?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    String courseTableName = "CSCI5308_5_TEST.courses";
+    String courseTableName = "CSCI5308_5_TEST.Courses";
     String username="CSCI5308_5_TEST_USER";
     String password="CSCI5308_5_TEST_5570";
 
