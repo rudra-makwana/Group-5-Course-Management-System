@@ -1,5 +1,7 @@
 package com.example.group5.model;
 
+import com.example.group5.DAO.ICsvFileDao;
+import com.example.group5.DaoMock.CsvFileMock;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -13,6 +15,14 @@ class CsvFileTest {
         CsvFile csvFile = new CsvFile();
         assertNull(csvFile.getCsvFile());
     }
+
+    @Test
+    public void ConstructorTest(){
+        ICsvFileDao iCsvFileDao = new CsvFileMock();
+        CsvFile csvFile = new CsvFile();
+        assertNull(csvFile.getCsvFile());
+    }
+
 
     @Test
     void getCsvFile() {
