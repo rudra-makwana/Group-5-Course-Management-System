@@ -53,6 +53,7 @@ class UserServiceTest {
 		String emailID;
 		String password;
 		try {
+			dbcon.closeConnection(statement,connect);
 			connect=dbcon.openConnection();
 			statement = connect.createStatement();
 			statement.executeQuery("use CSCI5308_5_TEST;");
@@ -171,7 +172,7 @@ class UserServiceTest {
 		String  queryForBacktoState="Delete FROM CSCI5308_5_TEST.Users WHERE bannerId='B00838699';" ;
 
 		try {
-
+			dbcon.closeConnection(statement,connect);
 			connect=dbcon.openConnection();
 			statement = connect.createStatement();
 			statement.executeQuery("use CSCI5308_5_TEST;");
@@ -217,6 +218,7 @@ class UserServiceTest {
 		String  queryForBacktoState="Delete FROM CSCI5308_5_TEST.Users WHERE bannerId='B0099994';" ;
 
 		try {
+			dbcon.closeConnection(statement,connect);
 			connect=dbcon.openConnection();
 			statement = connect.createStatement();
 			statement.executeQuery("use CSCI5308_5_TEST;");

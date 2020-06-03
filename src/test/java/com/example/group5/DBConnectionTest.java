@@ -1,4 +1,4 @@
-package com.example.group5.services;
+package com.example.group5;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

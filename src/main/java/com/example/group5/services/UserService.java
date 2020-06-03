@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.springframework.stereotype.Service;
 import com.example.group5.DBConnection;
-import com.example.group5.entities.Users;
+import com.example.group5.entities.User;
 
 /**
  * This is a Service class for user registration
@@ -41,6 +41,7 @@ public class UserService extends DBConnection implements IUserExists, IUserValid
 
 		String query="insert into CSCI5308_5_TEST.Users (bannerId, firstName, lastName, emailID, password) values('"+user.getBannerId()+"','"+user.getFirstName()+"','"+user.getLastName()+"','"+user.getEmailID()+"','"+user.getPassword()+"')";
 		try {
+			closeConnection(statement,connect);
 			connect=openConnection();
 
 			statement = connect.createStatement();
@@ -186,6 +187,7 @@ public class UserService extends DBConnection implements IUserExists, IUserValid
 
 		queryForFindingBannerId="Select bannerId from CSCI5308_5_TEST.Users where bannerId='"+str+"';" ;
 		try {
+			closeConnection(statement,connect);
 			connect= openConnection();
 			statement = connect.createStatement();
 			statement.executeQuery("use CSCI5308_5_TEST;");
@@ -233,6 +235,7 @@ public class UserService extends DBConnection implements IUserExists, IUserValid
 
 		queryForFindingUser="Select emailID from CSCI5308_5_TEST.Users where emailID='"+str+"';" ;
 		try {
+			closeConnection(statement,connect);
 			connect= openConnection();
 			statement = connect.createStatement();
 			statement.executeQuery("use CSCI5308_5_TEST;");
