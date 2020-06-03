@@ -8,5 +8,7 @@ public interface CourseDao {
 
     void insertCourse(Course course);
 
+    void deleteCourse(Course course);
+
     List<Course> selectAllCourses();
 }

@@ -1,48 +1,34 @@
 package com.example.group5.configure;
 
-import com.example.group5.dao.CourseDaoImplementation;
+import com.example.group5.service.AssignInstructorService;
+import com.example.group5.service.CourseService;
 
 public class SpringConfig {
 
 
     private static SpringConfig springConfig = null;
-    private CourseDaoImplementation courseDataAccessService;
-
-    private final String url;
-    private final String courseTableName;
-    private final String username;
-    private final String password;
+    private CourseService courseService;
+    private AssignInstructorService assignInstructorService;
 
     public SpringConfig(){
-        url = "jdbc:mysql://db-5308.cs.dal.ca/CSCI5308_5_TEST";
-        courseTableName = "CSCI5308_5_TEST.courses";
-        username="CSCI5308_5_TEST_USER";
-        password="CSCI5308_5_TEST_5570";
-        courseDataAccessService = new CourseDaoImplementation();
+        assignInstructorService = new AssignInstructorService();
+        courseService = new CourseService();
     }
 
-    public CourseDaoImplementation getCourseDataAccessService() {
-        return courseDataAccessService;
+    public CourseService getCourseService() {
+        return courseService;
     }
 
-    public void setCourseDataAccessService(CourseDaoImplementation courseDataAccessService) {
-        this.courseDataAccessService = courseDataAccessService;
+    public void setCourseService(CourseService courseService) {
+        this.courseService = courseService;
     }
 
-    public String getUrl() {
-        return url;
+    public AssignInstructorService getAssignInstructorService() {
+        return assignInstructorService;
     }
 
-    public String getCourseTableName() {
-        return courseTableName;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
+    public void setAssignInstructorService(AssignInstructorService assignInstructorService) {
+        this.assignInstructorService = assignInstructorService;
     }
 
     public static SpringConfig getObject(){
