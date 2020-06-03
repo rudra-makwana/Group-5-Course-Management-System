@@ -11,19 +11,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 
-@RestController
-@RequestMapping("/course-page")
+@Controller
 public class CoursePageController {
 
     Logger logger = LoggerFactory.getLogger(String.valueOf(this));
 
-    @GetMapping("/course-page")
-    public String openCoursePage(@RequestParam("user_role") Integer role , Model model) {
+    @RequestMapping("/course-page")
+    public String openCoursePage(@RequestParam(name = "user_role", required=false, defaultValue="1") Integer role , Model model) {
         //Assuming i will have user_id or session with role id
-        if (role == 0){
-
-        }
-        return "course_page";
+//        if (role == 0){
+//
+//        }
+        return "course-page";
     }
 
     @GetMapping("/file-upload-status")

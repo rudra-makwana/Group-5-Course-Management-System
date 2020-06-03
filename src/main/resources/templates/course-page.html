@@ -3,22 +3,21 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Course Page</title>
+    <script type="text/javascript" th:src="@{resources/support.js}"></script>
 </head>
 <body>
     <div class="alert alert-danger" role="alert" th:if="${error}">
         <strong>Error:</strong>
         <span th:text="${message}"></span>
     </div>
-    <div class="" th:if="${instuctor}">
+    <div class="">
         <form method="POST" th:action="@{/course-page/assign-TA}" enctype="multipart/form-data">
                 <label>Select a student to assign as a TA</label>
-                <div class="dropdown">
-                    <button onclick="myFunction()" class="dropbtn">Student List</button>
-                    <div id="myDropdown" class="dropdown-content">
-                        <a href="#">Link 3</a>
-                    </div>
-                </div>
-            <button type="submit" class="btn btn-primary">Import Students</button>
+                <select th:each="user : ${userList}" name="cars" id="cars">
+                    <option value="${user.bannerId}">${user.firstName} + ${user.lastName}</option>
+                </select>
+                <br><br>
+            <button type="submit" class="btn btn-primary">Make TA</button>
         </form>
     </div>
     <div class="" th:if="${TA}">
