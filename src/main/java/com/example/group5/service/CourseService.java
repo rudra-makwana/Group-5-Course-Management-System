@@ -10,12 +10,13 @@ import java.util.List;
 
 public class CourseService implements CourseDao {
 
-    String url = "jdbc:mysql://db-5308.cs.dal.ca/CSCI5308_5_TEST";
+    String url = "jdbc:mysql://db-5308.cs.dal.ca/CSCI5308_5_TEST?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     String courseTableName = "CSCI5308_5_TEST.courses";
     String username="CSCI5308_5_TEST_USER";
     String password="CSCI5308_5_TEST_5570";
 
     @Override
+    @SuppressWarnings("deprecation")
     public void insertCourse(Course course) {
         try {
             String insertStatement = "INSERT INTO "+courseTableName+" VALUES ("+course.getCourseId()+","+course.getCourseName()+")";
@@ -30,6 +31,7 @@ public class CourseService implements CourseDao {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void deleteCourse(Course course) {
         try {
             String deleteStatement = "DELETE FROM "+courseTableName+"WHERE idCourses="+course.getCourseId()+")";
@@ -44,6 +46,7 @@ public class CourseService implements CourseDao {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public List<Course> selectAllCourses() {
         List<Course> courses = new ArrayList<>();
         try {

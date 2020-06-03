@@ -15,12 +15,12 @@ import java.util.List;
 public class AssignInstructorController {
     public AssignInstructorService assignInstructorService = SpringConfig.getObject().getAssignInstructorService();
 
-    @PostMapping
+    @PostMapping("/admin/assigninstructor")
     public void assignInstructor(User user, String courseID){
         assignInstructorService.assignAsInstructor(user, courseID);
     }
 
-    @GetMapping
+    @GetMapping("/users/fectchusers")
     public List<User> getUserList(){
         return assignInstructorService.getAllUsers();
     }
