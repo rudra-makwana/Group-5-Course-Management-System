@@ -2,11 +2,10 @@ package com.example.group5.utils;
 
 import java.util.HashMap;
 
-/*
+/**
  * This Class does not serve any purpose in the CODE.
  * This was created to provide abstraction to the SQL Queries of the project.
  * But it is dropped.
- *
  */
 public class SqlQueries {
 
