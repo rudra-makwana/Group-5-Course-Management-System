@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>CATME</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div>
+    <form th:action="@{/login}" th:object="${user}" method="post">
+        <div>
+            <h1>Login Here</h1>
+            <label><b>Email ID</b></label>
+            <input type="email" placeholder="Enter Email-ID" th:field="*{emailID}" id="emailID" required>
+            <hr>
+
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" th:field="*{password}" id="password" required>
+            <hr>
+
+            <button type="submit" class="loginbtn">Login</button>
+        </div>
+        <br>
+        <a href="register">New User?Sign up here! </a>
+    </form>
+</div>
+</body>
+</html>
