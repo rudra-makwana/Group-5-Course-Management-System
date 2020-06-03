@@ -1,5 +1,6 @@
 package com.example.group5.controller;
 
+import com.example.group5.config.SpringConfig;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import org.slf4j.Logger;
@@ -18,10 +19,8 @@ public class CoursePageController {
 
     @RequestMapping("/course-page")
     public String openCoursePage(@RequestParam(name = "user_role", required=false, defaultValue="1") Integer role , Model model) {
-        //Assuming i will have user_id or session with role id
-//        if (role == 0){
-//
-//        }
+
+        model.addAttribute("userList", SpringConfig.getObject().getCoursePageService().fetchUserList());
         return "course-page";
     }
 

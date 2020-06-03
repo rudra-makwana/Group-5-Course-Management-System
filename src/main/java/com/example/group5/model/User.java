@@ -1,5 +1,14 @@
 package com.example.group5.model;
 
+import com.example.group5.DAO.ICsvFileDao;
+import com.example.group5.DAO.IUserDao;
+import com.example.group5.config.SpringConfig;
+import org.slf4j.LoggerFactory;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Logger;
+
 public class User {
     private String bannerID;
     private String firstName;

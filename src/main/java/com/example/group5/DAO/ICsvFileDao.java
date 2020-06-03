@@ -6,5 +6,5 @@ import java.io.File;
 
 public interface ICsvFileDao {
 
-    public void loadCsvFileFromURL(String Path , CsvFile csvFile);
+    void loadCsvFileFromURL(String Path , CsvFile csvFile);
 }

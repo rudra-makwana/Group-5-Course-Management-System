@@ -14,7 +14,7 @@
         <form method="POST" th:action="@{/course-page/assign-TA}" enctype="multipart/form-data">
                 <label>Select a student to assign as a TA</label>
                 <select th:each="user : ${userList}" name="cars" id="cars">
-                    <option value="${user.bannerId}">${user.firstName} + ${user.lastName}</option>
+                    <option value="${user.bannerId}"><span th:text="${user.firstName} + ${user.lastName}"></span></option>
                 </select>
                 <br><br>
             <button type="submit" class="btn btn-primary">Make TA</button>
@@ -30,7 +30,7 @@
         </form>
     </div>
     <div class="" th:if="${student}">
-
+        Welcome to <span th:text="${course}"></span>
     </div>
 </body>
 </html>
