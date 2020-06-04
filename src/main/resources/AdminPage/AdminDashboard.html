@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Admin Page</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
     <div>
@@ -24,6 +29,24 @@
             Add a new Course
         </button>
     </div>
-    <div style="margin-top: 10px"></div>
+    <div style="margin-top: 10px">
+        <table align="center">
+            <thead>
+                <tr>
+                    <th> Course ID </th>
+                    <th> Course Name </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${Courses.empty}">
+                    <td colspan="2"> No courses available </td>
+                </tr>
+                <tr th:each="course: ${Courses}">
+                    <td><a th:href="@{/admincoursepage(cid=${course.courseId})}" th:text="${course.courseId}" target="_self"></a></td>
+                    <td><a th:href="@{/admincoursepage(cid=${course.courseId})}" th:text="${course.courseName}" target="_self"></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

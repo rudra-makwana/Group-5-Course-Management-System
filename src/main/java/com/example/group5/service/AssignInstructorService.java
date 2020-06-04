@@ -22,7 +22,10 @@ public class AssignInstructorService implements UserDao {
             String assignInstructorQuery = "INSERT INTO "+usersTableName+"VALUES ("+courseID+","+user.getBannerID()+", 1)";
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url, username, password);
-            Statement statement = connection.createStatement();;
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(assignInstructorQuery);
+            statement.close();
+            connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -44,6 +47,9 @@ public class AssignInstructorService implements UserDao {
                 String lastName = resultSet.getString("lastName");
                 users.add(new User(bannerID,firstName,lastName));
             }
+            statement.close();
+            resultSet.close();
+            connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
