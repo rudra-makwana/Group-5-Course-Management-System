@@ -21,35 +21,48 @@ import java.util.Properties;
 @Controller
 public class CoursePageController {
 
-    Logger logger = LoggerFactory.getLogger(String.valueOf(this));
-
     @RequestMapping("/course-page")
-    public String openCoursePage(@RequestParam(name = "user_role", required=false, defaultValue="1") Integer role , Model model) {
-        model.addAttribute("userList", SpringConfig.getObject().getCoursePageService().fetchUserList());
+    public String openCoursePage(@RequestParam(name = "c_id") String course_id,
+                                 @RequestParam(name = "bannerId") String bannerID,
+                                 @RequestParam(name = "roleId", defaultValue="3") Integer roleID, Model model) {
+
+        model.addAttribute("Error", false);
+        switch (roleID){
+            case 1:
+                model.addAttribute("Instructor", true);
+                model.addAttribute("TA", false);
+                model.addAttribute("Student", false);
+                model.addAttribute("userList", SpringConfig.getObject().getCoursePageService().fetchUserList());
+                break;
+            case 2:
+                model.addAttribute("Instructor", false);
+                model.addAttribute("TA", true);
+                model.addAttribute("Student", false);
+                break;
+            case 3:
+                model.addAttribute("Instructor", false);
+                model.addAttribute("TA", false);
+                model.addAttribute("Student", true);
+                model.addAttribute("courseID", course_id);
+                model.addAttribute("courseName", SpringConfig.getObject().getCourseService().getCourseName(course_id));
+                break;
+            default:
+                model.addAttribute("Instructor", false);
+                model.addAttribute("TA", false);
+                model.addAttribute("Student", false);
+                model.addAttribute("Error", true);
+        }
         return "course-page";
     }
 
     @RequestMapping(value = "/assign-TA", method = RequestMethod.POST)
-    public String assignTa(@RequestParam(name = "assignedTA", required=false) Object student, Model model){
-        logger.trace("A TRACE Message");
-        logger.debug("A DEBUG Message");
-        logger.info("An INFO Message");
-        logger.warn("A WARN Message");
-        logger.error("An ERROR Message");
-
-        MailUtil mailUtil = new MailUtil();
-        try {
-            mailUtil.sendmail("krutin@dal.ca", "test", "<h1>test</h1> <b>yey</b> <strong>works!!</strong>");
-        } catch (MessagingException | IOException e) {
-            e.printStackTrace();
+    public String assignTa(@RequestParam(name = "assignedTA") Object studentID, @RequestParam(name = "C_ID") String courseID, Model model){
+        if(SpringConfig.getObject().getCoursePageService().makeStudentTA(courseID, studentID)){
+            model.addAttribute("error", false);
+        } else {
+            model.addAttribute("error",true);
         }
-        model.addAttribute("bannerID", student);
-        return "Ta-assign-success";
-    }
-
-    @RequestMapping("/course-page/assign-TA/TA-assign-success")
-    public String assignTaSuccess(Model model){
-        return "TA-assign-success";
+        return "Ta-assign";
     }
 
     @GetMapping("/file-upload-status")
@@ -80,11 +93,6 @@ public class CoursePageController {
             model.addAttribute("message", "An error occurred while processing the CSV file.");
             model.addAttribute("status", false);
         }
-        logger.trace("A TRACE Message");
-        logger.debug("A DEBUG Message");
-        logger.info("An INFO Message");
-        logger.warn("A WARN Message");
-        logger.error("An ERROR Message");
         return "file-upload-status";
     }
 }

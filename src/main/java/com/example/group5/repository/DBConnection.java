@@ -22,6 +22,7 @@ public class DBConnection {
 
     public ResultSet executeQuery(String query) throws SQLException {
         statement = connection.createStatement();
+        statement.executeQuery("use CSCI5308_5_TEST");
         return statement.executeQuery(query);
     }
 

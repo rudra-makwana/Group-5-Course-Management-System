@@ -5,9 +5,14 @@
     <title>TA assign success</title>
 </head>
 <body>
-    <div>
+    <div class="alert alert-danger" role="alert" th:if="${error}">
+        <strong>Error:</strong>
+        <span th:text="${message}"></span>
+    </div>
+    <div th:if="${!error}">
+        Assign the student to TA with bannerID:
         <p th:text="${bannerID}"></p>
-        <p>Upload the CSV <a href="/course-page">CoursePage</a></p>
+        <p>Go back to course page <a href="/course-page">CoursePage</a></p>
     </div>
 </body>
 </html>
