@@ -10,6 +10,7 @@ public class RegisteredCourses {
     public RegisteredCourses(String courseID, String bannerID, int roleID ,String roleType, String courseName) {
         this.courseID = courseID;
         this.bannerID = bannerID;
+        this.roleID = roleID;
         this.roleType = roleType;
         this.courseName = courseName;
     }

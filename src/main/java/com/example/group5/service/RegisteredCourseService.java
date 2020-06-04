@@ -20,12 +20,12 @@ public class RegisteredCourseService implements RegisteredCourseDao {
         String getRegisteredCourseQuery = "SELECT courseId,roleId FROM "+courseRegistrationTable+" WHERE userId=\""+bannerID+"\"" ;
         List<RegisteredCourses> registeredCoursesList = new ArrayList<>();
         try {
-            String roleType;
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url,username, password);
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(getRegisteredCourseQuery);
             while (resultSet.next()){
+                String roleType = null;
                 String courseId = resultSet.getString("courseId");
                 int roleId = resultSet.getInt("roleId");
                 if(roleId == 1){
@@ -37,7 +37,7 @@ public class RegisteredCourseService implements RegisteredCourseDao {
                 }
                 CourseService courseService = SpringConfig.getObject().getCourseService();
                 String courseName = courseService.getCourseName(courseId);
-                registeredCoursesList.add(new RegisteredCourses(courseId, bannerID, roleId,roleType, courseName));
+                registeredCoursesList.add(new RegisteredCourses(courseId, bannerID, roleId, roleType, courseName));
             }
             statement.close();
             resultSet.close();

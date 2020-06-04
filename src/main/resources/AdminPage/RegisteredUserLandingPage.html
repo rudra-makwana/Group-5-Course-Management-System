@@ -38,7 +38,7 @@
             </tr>
             <tr th:each="course: ${Courses}">
                 <td><a th:href="@{/course-page(c_id=${course.courseID}, bannerId=${course.bannerID}, roleId=${course.roleID})}" th:text="${course.courseID}" target="_self"></a></td>
-                <td><a th:href="@{/admincoursepage(cid=${course.courseName})}" th:text="${course.courseName}" target="_self"></a></td>
+                <td><a th:href="@{/course-page(c_id=${course.courseID}, bannerId=${course.bannerID}, roleId=${course.roleID})}" th:text="${course.courseName}" target="_self"></a></td>
                 <td><span th:text="${course.roleType}"> Your Role </span></td>
             </tr>
             </tbody>
