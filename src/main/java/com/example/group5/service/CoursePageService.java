@@ -3,6 +3,7 @@ package com.example.group5.service;
 import com.example.group5.DAO.IUserDao;
 import com.example.group5.config.SpringConfig;
 import com.example.group5.model.User;
+import com.example.group5.repository.DBConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,11 +16,12 @@ public class CoursePageService implements IUserDao {
     public List<User> fetchUserList() {
         ArrayList<User> userList = new ArrayList<>();
         ResultSet resultSet = null;
+//        DBConnection dbConnection = SpringConfig.getObject().getDbConnection();
         try {
-            resultSet = SpringConfig.getObject().getDbConnection().executeQuery("Select * from Users");
+            resultSet = SpringConfig.getObject().getDbConnection().executeQuery("Select * from CSCI5308_5_TEST.Users");
         } catch (SQLException e) {
             e.printStackTrace();
-            SpringConfig.getObject().getLogger().debug("DATABASE Connection ERROR..!");
+            SpringConfig.getObject().getLogger().debug("Query processing ERROR..!");
         }
         try{
             if (resultSet != null) {
@@ -37,6 +39,9 @@ public class CoursePageService implements IUserDao {
             e.printStackTrace();
             SpringConfig.getObject().getLogger().debug("DATABASE Connection ERROR..!");
         }
+//        finally {
+//            SpringConfig.getObject().getDbConnection().closeConnection();
+//        }
 
         return userList;
     }

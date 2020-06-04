@@ -4,6 +4,9 @@ import com.example.group5.repository.DBConnection;
 import com.example.group5.service.CoursePageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.mail.MailSender;
+
+import java.sql.DriverManager;
 
 public class SpringConfig {
     private static SpringConfig springConfig = null;
@@ -15,9 +18,9 @@ public class SpringConfig {
 
     public SpringConfig() {
         this.dbConnection = new DBConnection(
-                (0 < System.getenv("DATABASE_URL").length()) ? System.getenv("DATABASE_URL") : "db-5308.cs.dal.ca",
-                (0 < System.getenv("DATABASE_USER").length()) ? System.getenv("DATABASE_USER") : "CSCI5308_5_TEST_USER",
-                (0 < System.getenv("DATABASE_PASSWORD").length()) ? System.getenv("DATABASE_PASSWORD") : "CSCI5308_5_TEST_5570"
+                (0 < -1) ? System.getenv("DATABASE_URL") : "jdbc:mysql://db-5308.cs.dal.ca:3306?serverTimezone=UTC&useSSL=false",
+                (0 < -1) ? System.getenv("DATABASE_USER") : "CSCI5308_5_TEST_USER",
+                (0 < -1) ? System.getenv("DATABASE_PASSWORD") : "CSCI5308_5_TEST_5570"
         );
         this.coursePageService = new CoursePageService();
         this.logger = LoggerFactory.getLogger(String.valueOf(this));

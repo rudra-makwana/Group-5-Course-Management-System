@@ -1,16 +1,22 @@
 package com.example.group5.controller;
 
 import com.example.group5.config.SpringConfig;
+import com.example.group5.utils.MailUtil;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.mail.MailException;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.mail.MessagingException;
 import java.io.*;
+import java.util.Properties;
 
 @Controller
 public class CoursePageController {
@@ -19,9 +25,31 @@ public class CoursePageController {
 
     @RequestMapping("/course-page")
     public String openCoursePage(@RequestParam(name = "user_role", required=false, defaultValue="1") Integer role , Model model) {
-
         model.addAttribute("userList", SpringConfig.getObject().getCoursePageService().fetchUserList());
         return "course-page";
+    }
+
+    @RequestMapping(value = "/assign-TA", method = RequestMethod.POST)
+    public String assignTa(@RequestParam(name = "assignedTA", required=false) Object student, Model model){
+        logger.trace("A TRACE Message");
+        logger.debug("A DEBUG Message");
+        logger.info("An INFO Message");
+        logger.warn("A WARN Message");
+        logger.error("An ERROR Message");
+
+        MailUtil mailUtil = new MailUtil();
+        try {
+            mailUtil.sendmail("krutin@dal.ca", "test", "<h1>test</h1> <b>yey</b> <strong>works!!</strong>");
+        } catch (MessagingException | IOException e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("bannerID", student);
+        return "Ta-assign-success";
+    }
+
+    @RequestMapping("/course-page/assign-TA/TA-assign-success")
+    public String assignTaSuccess(Model model){
+        return "TA-assign-success";
     }
 
     @GetMapping("/file-upload-status")

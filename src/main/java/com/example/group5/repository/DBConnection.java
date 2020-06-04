@@ -8,26 +8,29 @@ import java.sql.*;
  */
 public class DBConnection {
 
-    private String dbURL;
-    private String dbUser;
-    private String dbPass;
+    private Statement statement;
+    private Connection connection;
 
     public DBConnection(String dbURL, String dbUser, String dbPass) {
-        this.dbURL = dbURL;
-        this.dbUser = dbUser;
-        this.dbPass = dbPass;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            this.connection = DriverManager.getConnection(dbURL, dbUser, dbPass);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public ResultSet executeQuery(String query) throws SQLException {
-        Connection connection = getConnection(dbURL, dbUser, dbPass);
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(query);
-        statement.close();
-        connection.close();
-        return resultSet;
+        statement = connection.createStatement();
+        return statement.executeQuery(query);
     }
 
-    public Connection getConnection(String dbURL, String dbUser, String dbPass) throws SQLException {
-        return DriverManager.getConnection(dbURL, dbUser, dbPass);
+    public void closeConnection(){
+        try {
+            if (null != statement) statement.close();
+            if (null != connection) connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
