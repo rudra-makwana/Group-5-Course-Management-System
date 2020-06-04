@@ -18,7 +18,7 @@ public class CourseController {
 
     @GetMapping("/admindashboard")
     public ModelAndView openAdminDashboard(ModelAndView modelAndView) {
-        modelAndView = modelAndView.addObject("Courses", courseService.selectAllCourses());
+        modelAndView = modelAndView.addObject("registeredCourses", courseService.selectAllCourses());
         modelAndView.setViewName("AdminDashboard");
         return modelAndView;
     }
@@ -56,15 +56,5 @@ public class CourseController {
             modelAndView.setViewName("ErrorPage");
         }
         return modelAndView;
-    }
-
-    @GetMapping("course/getallcourses")
-    public List<Course> selectAllCourses() {
-        return courseService.selectAllCourses();
-    }
-
-    @GetMapping("course/getregisteredcourse")
-    public List<Course> getRegisteredCourses(String bannerId){
-        return courseService.getRegisteredCourses(bannerId);
     }
 }
