@@ -21,11 +21,7 @@ public class UserModelTest {
     public void addInstructorConstructor(){
         User users = new User("B00826991","Rudra", "Makwana");
         UserDaoMock userDaoMock = new UserDaoMock();
-        User usersTestCheck = userDaoMock.assignAsInstructor(new User("B00826991","Rudra", "Makwana"));
-
-        assertEquals(users.getBannerID(), usersTestCheck.getBannerID());
-        assertEquals(users.getFirstName(),usersTestCheck.getFirstName());
-        assertEquals(users.getLastName(),usersTestCheck.getLastName());
+        userDaoMock.assignAsInstructor("B00826991", "CSCI-5308");
     }
 
 }

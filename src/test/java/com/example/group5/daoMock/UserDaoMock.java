@@ -1,18 +1,28 @@
 package com.example.group5.daoMock;
 
 import com.example.group5.dao.UserDao;
+import com.example.group5.model.RegisteredCourseTestModel;
 import com.example.group5.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoMock implements UserDao {
+    public static List<RegisteredCourseTestModel>  assignedUser = new ArrayList<>();
+
     @Override
-    public User assignAsInstructor(User users) {
-        return users;
+    public void assignAsInstructor(String bannerId, String courseID) {
+        assignedUser.add(new RegisteredCourseTestModel(bannerId, courseID, 1));
+    }
+
+    public List<RegisteredCourseTestModel> getAssignedUser(){
+        return assignedUser;
     }
 
     @Override
     public List<User> getAllUsers() {
-        return null;
+        List<User> userList = null;
+        return userList;
     }
+
 }

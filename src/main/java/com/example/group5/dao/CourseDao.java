@@ -15,5 +15,4 @@ public interface CourseDao {
     List<Course> getRegisteredCourses(String bannerId);
 
     List<Course> selectAllCourses();
-
 }
