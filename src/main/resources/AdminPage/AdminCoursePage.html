@@ -10,11 +10,8 @@
         </div>
         <div  style="border-style: solid;"></div>
         <div align="right">
-            <form th:action="@{/logout}" method="post" enctype="multipart/form-data">
-                <button id="logOutButton"
-                        type="button" style="margin-top: 10px; margint-right: 10px; text-align: center; color: red">
-                    Log Out
-                </button>
+            <form th:action="@{/login}" method="post" style="margin-top: 10px;">
+                <input type="submit" id="logOutButton" value="Log Out">
             </form>
         </div>
         <div  style="border-style: solid; margin-top: 10px"></div>
@@ -25,16 +22,17 @@
             </h3>
         </div>
         <div style="margin-top:40px; margib-left: 10px; position:relative;" align="center">
-             <input list="users" name="instructorList" id="instructorDropDown" style="height: 28px;">
-            <datalist id="users" >
-                <option th:each = "user: ${Users}" th:value="${user.getBannerID()}" th:text="|${user.getFirstName()} ${user.getLastName()}|"></option>
-            </datalist>
-         </div>
-
-        <div style="margin-top:10px; margib-left: 10px; position:relative;" align="center">
-            <button id="assignInstructor" type="button" style="margin-top: 10px; text-align: center; height: 36px; width: 150px">
-                Assign an instructor
-            </button>
+            <form role="form" method="post" id="assignInstructorForm" th:action="@{/admin/assigninstructor}"
+                th:object="${assignInstructor}">
+                <input type="text" style="visibility: hidden" th:text="${CourseID}" name="courseID" th:value="${CourseID}">
+                <input list="users" name="instructorList" id="instructorDropDown" style="height: 28px;">
+                <datalist id="users" >
+                    <option th:each = "user: ${Users}" th:value="${user.getBannerID()}" th:text="|${user.getFirstName()} ${user.getLastName()}|"></option>
+                </datalist>
+                <input type="submit" value="Assign an Instructor"
+                       id="assignInstructor"
+                       style="margin-top: 10px; text-align: center; height: 36px; width: 150px">
+            </form>
         </div>
     </body>
 </html>

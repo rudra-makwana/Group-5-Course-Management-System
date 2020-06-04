@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserDao {
 
-    void assignAsInstructor(User user, String courseID);
+    void assignAsInstructor(String bannerId, String courseID);
 
     List<User> getAllUsers();
 }

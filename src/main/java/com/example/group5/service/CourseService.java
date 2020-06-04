@@ -20,7 +20,7 @@ public class CourseService implements CourseDao {
     @SuppressWarnings("deprecation")
     public void insertCourse(Course course) {
         try {
-            String insertStatement = "INSERT INTO "+courseTableName+" VALUES ("+course.getCourseId()+","+course.getCourseName()+")";
+            String insertStatement = "INSERT INTO "+courseTableName+" VALUES (\""+course.getCourseId()+"\",\""+course.getCourseName()+"\")";
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url,username,password);
             Statement statement = connection.createStatement();
@@ -34,13 +34,15 @@ public class CourseService implements CourseDao {
 
     @Override
     @SuppressWarnings("deprecation")
-    public void deleteCourse(Course course) {
+    public void deleteCourse(String courseId) {
         try {
-            String deleteStatement = "DELETE FROM "+courseTableName+"WHERE idCourses="+course.getCourseId()+")";
+            String deleteStatementFromCourse = "DELETE FROM "+courseTableName+" WHERE idCourses=\""+courseId+"\"";
+            String deleteStatementFromRegistration = "DELETE FROM "+courseRegistrationTable+" WHERE courseId=\""+courseId+"\"";
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url,username,password);
             Statement statement = connection.createStatement();
-            statement.executeUpdate(deleteStatement);
+            statement.executeUpdate(deleteStatementFromRegistration);
+            statement.executeUpdate(deleteStatementFromCourse);
             statement.close();
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {

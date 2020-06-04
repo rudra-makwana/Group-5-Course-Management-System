@@ -11,19 +11,22 @@ import java.util.List;
 public class AssignInstructorService implements UserDao {
 
     String url = "jdbc:mysql://db-5308.cs.dal.ca/CSCI5308_5_TEST?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    String courseRegistrationTable = "CSCI5308_5_TEST.courseRegistration";
     String usersTableName = "CSCI5308_5_TEST.Users";
     String username="CSCI5308_5_TEST_USER";
     String password="CSCI5308_5_TEST_5570";
 
     @Override
     @SuppressWarnings("deprecation")
-    public void assignAsInstructor(User user, String courseID) {
+    public void assignAsInstructor(String bannerId, String courseID) {
         try {
-            String assignInstructorQuery = "INSERT INTO "+usersTableName+"VALUES ("+courseID+","+user.getBannerID()+", 1)";
+            System.out.println(courseID);
+            String assignQuery = "INSERT INTO CSCI5308_5_TEST.courseRegistration VALUES (\""+courseID+"\",\""+bannerId+"\",1);";
+            //String assignInstructorQuery = "INSERT INTO "+usersTableName+" VALUES (\""+courseID+"\",\""+bannerId+"\", 1)";
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url, username, password);
             Statement statement = connection.createStatement();
-            statement.executeUpdate(assignInstructorQuery);
+            statement.executeUpdate(assignQuery);
             statement.close();
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
