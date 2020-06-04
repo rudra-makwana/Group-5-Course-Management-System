@@ -6,15 +6,35 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.group5.entities.User;
+import com.example.group5.services.LoginService;
 import com.example.group5.services.UserService;
 
 /**
  * This is controller class for mapping requests with responses
  * @author Japnoor Kaur
+ * updated by Chetanpreet Singh for login
  *
  */
 @Controller
 public class RegisterController {
+
+	//Login code by Chetanpreet Singh
+	@GetMapping("/login")                               //called when/login is called
+	public String loginForm(Model model)
+	{
+		model.addAttribute("user", new User());    //User going to form
+		return "login";
+	}
+	
+	
+
+
+	@PostMapping("/login")
+	public String loginAction(User user, Model model,LoginService loginService)       //User object(From the form submission) and Model object
+	{
+		String response = loginService.findUser(user);
+		return response;
+	}
 
 
 	@GetMapping("/register")
@@ -26,37 +46,52 @@ public class RegisterController {
 	@PostMapping("/register")
 	public String registerAction(User user, Model model, UserService userService) {
 
-		if(userService.bannerIdExists(user.getBannerId())) {
+		if(userService.bannerIdExists(user.getBannerId())) 
+		{
 			model.addAttribute("bannerIdAlreadyExists", true);
 			return "register";
 		}
-		if(userService.userExists(user.getEmailID())) {
+		
+		
+		if(userService.userExists(user.getEmailID())) 
+		{
 			model.addAttribute("userAlreadyExists", true);
 			return "register";
 
 		}
-		if(userService.validateBannerId(user.getBannerId())) {
+		
+		
+		if(userService.validateBannerId(user.getBannerId())) 
+		{
 			model.addAttribute("bannerIdError", true);
 			return "register";
 
 		}
-		if(userService.validateFirstName(user.getFirstName())) {
+		
+		
+		if(userService.validateFirstName(user.getFirstName())) 
+		{
 			model.addAttribute("firstNameError", true);
 			return "register";
 
 		}
-		if(userService.validateLastName(user.getLastName())) {
+		
+		
+		if(userService.validateLastName(user.getLastName())) 
+		{
 			model.addAttribute("lastNameError", true);
 			return "register";
 
 		}
 
-		if(userService.validateEmail(user.getEmailID())) {
+		if(userService.validateEmail(user.getEmailID())) 
+		{
 			model.addAttribute("emailError", true);
 			return "register";
 
 		}
-		if(userService.validatePassword(user.getPassword())) {
+		if(userService.validatePassword(user.getPassword())) 
+		{
 			model.addAttribute("passwordError", true);
 			return "register";
 
