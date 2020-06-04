@@ -10,5 +10,9 @@ public interface CourseDao {
 
     void deleteCourse(Course course);
 
+    String getCourseName(String courseId);
+
+    List<Course> getRegisteredCourses(String bannerId);
+
     List<Course> selectAllCourses();
 }

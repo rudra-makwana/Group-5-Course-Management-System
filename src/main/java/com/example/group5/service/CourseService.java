@@ -12,6 +12,7 @@ public class CourseService implements CourseDao {
 
     String url = "jdbc:mysql://db-5308.cs.dal.ca/CSCI5308_5_TEST?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     String courseTableName = "CSCI5308_5_TEST.Courses";
+    String courseRegistrationTable = "CSCI5308_5_TEST.courseRegistration";
     String username="CSCI5308_5_TEST_USER";
     String password="CSCI5308_5_TEST_5570";
 
@@ -24,6 +25,7 @@ public class CourseService implements CourseDao {
             Connection connection = DriverManager.getConnection(url,username,password);
             Statement statement = connection.createStatement();
             statement.executeUpdate(insertStatement);
+            statement.close();
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -39,10 +41,57 @@ public class CourseService implements CourseDao {
             Connection connection = DriverManager.getConnection(url,username,password);
             Statement statement = connection.createStatement();
             statement.executeUpdate(deleteStatement);
+            statement.close();
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public String getCourseName(String courseId) {
+        String courseName = "There is some unknown error";
+        String selectCourseStatement = "select courseName from CSCI5308_5_TEST.Courses where idCourses=\""+courseId+"\"";
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url,username, password);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(selectCourseStatement);
+            while (resultSet.next()){
+                courseName = resultSet.getString("courseName");
+            }
+            statement.close();
+            resultSet.close();
+            connection.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return courseName;
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public List<Course> getRegisteredCourses(String bannerId) {
+        List<Course> courses = new ArrayList<>();
+        try {
+            String courseSelectStatement="SELECT * FROM "+courseRegistrationTable+"WHERE bannerId = "+bannerId;
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url,username, password);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(courseSelectStatement);
+            while (resultSet.next()){
+                String courseId = resultSet.getString("idCourses");
+                String courseName = resultSet.getString("courseName");
+                courses.add(new Course(courseId,courseName));
+            }
+            statement.close();
+            resultSet.close();
+            connection.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return courses;
     }
 
     @Override
@@ -60,6 +109,9 @@ public class CourseService implements CourseDao {
                 String courseName = resultSet.getString("courseName");
                 courses.add(new Course(courseId,courseName));
             }
+            statement.close();
+            resultSet.close();
+            connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
