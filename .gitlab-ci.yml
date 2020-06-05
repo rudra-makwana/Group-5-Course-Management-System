@@ -24,9 +24,9 @@ test:
 
 deploy-on-test-server:
   stage: deploy
-  image: gradle:alpine
+  image: ruby:2.3
   script:
-    - sudo dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+    - sudo -S dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
   only:
       - develop
 
@@ -46,8 +46,8 @@ test_production:
 
 deploy-on-production-server:
   stage: deploy
-  image: gradle:alpine
+  image: ruby:2.3
   script:
-    - sudo dpl --provider=heroku --app=$HEROKU_APP_NAME_PRODUCTION --api-key=$HEROKU_API_KEY
+    - sudo -S dpl --provider=heroku --app=$HEROKU_APP_NAME_PRODUCTION --api-key=$HEROKU_API_KEY
   only:
     - master
