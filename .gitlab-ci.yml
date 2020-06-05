@@ -9,7 +9,7 @@ before_script:
 build:
   stage: build
   image: gradle:alpine
-  script: ./gradlew --build-cache assemble
+  script: bash ./gradlew --build-cache assemble
   only:
     refs:
       - branches
@@ -17,7 +17,7 @@ build:
 test:
   stage: test
   image: gradle:alpine
-  script: ./gradlew check
+  script: bash ./gradlew check
   only:
     refs:
       - branches
@@ -36,14 +36,14 @@ deploy-on-test-server:
 build_production:
   stage: build
   image: gradle:alpine
-  script: ./gradlew --build-cache assemble
+  script: bash ./gradlew --build-cache assemble
   only:
     - master
 
 test_production:
   stage: test
   image: gradle:alpine
-  script: ./gradlew check
+  script: bash ./gradlew check
   only:
     - master
 
