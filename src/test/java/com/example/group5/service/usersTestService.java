@@ -1,6 +1,6 @@
 package com.example.group5.service;
 
-import com.example.group5.daoMock.UserDaoMock;
+import com.example.group5.DaoMock.UserDaoMock;
 import com.example.group5.model.RegisteredCourseTestModel;
 import com.example.group5.model.InstructorUser;
 import org.junit.jupiter.api.Test;

@@ -21,7 +21,7 @@ public class DBConnection implements IDBConnection{
 	public Connection openConnection(){
 		try{
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connect= DriverManager.getConnection("jdbc:mysql://db-5308.cs.dal.ca:3306?serverTimezone=UTC&useSSL=false", "CSCI5308_5_TEST_USER", "CSCI5308_5_TEST_5570");
+			connect= DriverManager.getConnection("jdbc:mysql://db-5308.cs.dal.ca:3306?serverTimezone=UTC&useSSL=false", "CSCI5308_5_PRODUCTION_USER", "CSCI5308_5_PRODUCTION_5918");
 		}catch(Exception ex){
 			System.out.println(ex.getMessage());
 			System.out.println("couldn't connect!");

@@ -2,7 +2,7 @@ package com.example.group5.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.example.group5.daoMock.UserDaoMock;
+import com.example.group5.DaoMock.UserDaoMock;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

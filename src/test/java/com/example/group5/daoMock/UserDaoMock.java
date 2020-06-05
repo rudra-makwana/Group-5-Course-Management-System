@@ -1,6 +1,6 @@
-package com.example.group5.daoMock;
+package com.example.group5.DaoMock;
 
-import com.example.group5.dao.UserDao;
+import com.example.group5.DAO.UserDao;
 import com.example.group5.model.RegisteredCourseTestModel;
 import com.example.group5.model.InstructorUser;
 

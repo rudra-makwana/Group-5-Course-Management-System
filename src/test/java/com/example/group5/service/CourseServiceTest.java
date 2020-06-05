@@ -1,6 +1,6 @@
 package com.example.group5.service;
 
-import com.example.group5.daoMock.CourseDaoMock;
+import com.example.group5.DaoMock.CourseDaoMock;
 import com.example.group5.model.Course;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

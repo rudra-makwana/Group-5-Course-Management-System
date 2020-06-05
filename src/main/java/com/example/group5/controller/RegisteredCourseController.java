@@ -1,6 +1,6 @@
 package com.example.group5.controller;
 
-import com.example.group5.configure.SpringConfig;
+import com.example.group5.config.SpringConfig;
 import com.example.group5.model.Course;
 import com.example.group5.model.RegisteredCourses;
 import com.example.group5.service.CourseService;

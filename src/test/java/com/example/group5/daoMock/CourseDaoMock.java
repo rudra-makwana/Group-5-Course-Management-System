@@ -1,6 +1,6 @@
-package com.example.group5.daoMock;
+package com.example.group5.DaoMock;
 
-import com.example.group5.dao.CourseDao;
+import com.example.group5.DAO.CourseDao;
 import com.example.group5.model.Course;
 
 import java.util.ArrayList;

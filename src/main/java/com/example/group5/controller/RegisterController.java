@@ -41,7 +41,7 @@ public class RegisterController {
 			return modelAndView;
 		}
 		else {
-			modelAndView.addObject("bannerID",user.getBannerId());
+			modelAndView.addObject("bannerID",user.getBannerID());
 			modelAndView.setViewName("userdashboard");
 			return modelAndView;
 		}

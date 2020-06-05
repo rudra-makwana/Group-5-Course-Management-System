@@ -1,4 +1,4 @@
-package com.example.group5.dao;
+package com.example.group5.DAO;
 
 import com.example.group5.model.Course;
 
