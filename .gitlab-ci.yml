@@ -9,7 +9,7 @@ before_script:
 build:
   stage: build
   tags:
-    - grad
+    - rudra_runner
   image: gradle:alpine
   script: ./gradlew --build-cache assemble
   only:
@@ -19,7 +19,7 @@ build:
 test:
   stage: test
   tags:
-    - grad
+    - rudra_runner
   image: gradle:alpine
   script: ./gradlew check
   only:
@@ -29,7 +29,7 @@ test:
 deploy-on-test-server:
   stage: deploy
   tags:
-    - dalfcs_gitlab_docker_ci
+    - rudra_runner
   image: ruby:2.6
   script:
     - apt-get update -qy
@@ -38,3 +38,34 @@ deploy-on-test-server:
     - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
   only:
       - develop
+
+build_production:
+  stage: build
+  tags:
+    - rudra_runner
+  image: gradle:alpine
+  script: ./gradlew --build-cache assemble
+  only:
+    - master
+
+test_production:
+  stage: test
+  tags:
+    - rudra_runner
+  image: gradle:alpine
+  script: ./gradlew check
+  only:
+    - master
+
+deploy-on-production-server:
+  stage: deploy
+  tags:
+    - rudra_runner
+  image: ruby:2.6
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_APP_NAME_PRODUCTION --api-key=$HEROKU_API_KEY
+  only:
+    - master
