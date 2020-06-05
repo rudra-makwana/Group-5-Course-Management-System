@@ -2,9 +2,8 @@ package com.example.group5.service;
 
 import com.example.group5.daoMock.UserDaoMock;
 import com.example.group5.model.RegisteredCourseTestModel;
-import com.example.group5.model.User;
+import com.example.group5.model.InstructorUser;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
@@ -26,7 +25,7 @@ public class usersTestService {
     @Test
     public void fetchUsers(){
         UserDaoMock userDaoMock = new UserDaoMock();
-        List<User> userList = userDaoMock.getAllUsers();
+        List<InstructorUser> userList = userDaoMock.getAllUsers();
         assertNull(userList);
     }
 }

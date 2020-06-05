@@ -18,7 +18,7 @@ public class CourseController {
 
     @GetMapping("/admindashboard")
     public ModelAndView openAdminDashboard(ModelAndView modelAndView) {
-        modelAndView = modelAndView.addObject("registeredCourses", courseService.selectAllCourses());
+        modelAndView = modelAndView.addObject("Courses", courseService.selectAllCourses());
         modelAndView.setViewName("AdminDashboard");
         return modelAndView;
     }

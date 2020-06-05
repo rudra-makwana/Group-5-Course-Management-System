@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class UserModelTest {
     @Test
     public void defaulConstructorTest(){
-        User users = new User("B00826991","Rudra","Makwana");
+        InstructorUser users = new InstructorUser("B00826991","Rudra","Makwana");
         assertNotNull(users.getBannerID());
         assertNotNull(users.getFirstName());
         assertNotNull(users.getLastName());
@@ -19,7 +19,7 @@ public class UserModelTest {
 
     @Test
     public void addInstructorConstructor(){
-        User users = new User("B00826991","Rudra", "Makwana");
+        InstructorUser users = new InstructorUser("B00826991","Rudra", "Makwana");
         UserDaoMock userDaoMock = new UserDaoMock();
         userDaoMock.assignAsInstructor("B00826991", "CSCI-5308");
     }

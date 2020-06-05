@@ -2,7 +2,7 @@ package com.example.group5.daoMock;
 
 import com.example.group5.dao.UserDao;
 import com.example.group5.model.RegisteredCourseTestModel;
-import com.example.group5.model.User;
+import com.example.group5.model.InstructorUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +20,8 @@ public class UserDaoMock implements UserDao {
     }
 
     @Override
-    public List<User> getAllUsers() {
-        List<User> userList = null;
+    public List<InstructorUser> getAllUsers() {
+        List<InstructorUser> userList = null;
         return userList;
     }
 

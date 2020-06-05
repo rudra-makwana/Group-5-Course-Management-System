@@ -1,8 +1,5 @@
 package com.example.group5.utility;
 
-import com.example.group5.model.Course;
-import com.example.group5.model.User;
-
 import java.sql.*;
 
 public class CheckExistenceInDatabase {

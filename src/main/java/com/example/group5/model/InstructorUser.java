@@ -1,13 +1,13 @@
 package com.example.group5.model;
 
-public class User {
+public class InstructorUser {
     private String bannerID;
     private String firstName;
     private String lastName;
     private String emailID;
     private String password;
 
-    public User(String bannerID, String firstName, String lastName, String emailID, String password) {
+    public InstructorUser(String bannerID, String firstName, String lastName, String emailID, String password) {
         this.bannerID = bannerID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -15,7 +15,7 @@ public class User {
         this.password = password;
     }
 
-    public User(String bannerID, String firstName, String lastName) {
+    public InstructorUser(String bannerID, String firstName, String lastName) {
         this.bannerID = bannerID;
         this.firstName = firstName;
         this.lastName = lastName;

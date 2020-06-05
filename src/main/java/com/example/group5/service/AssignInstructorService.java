@@ -1,7 +1,7 @@
 package com.example.group5.service;
 
 import com.example.group5.dao.UserDao;
-import com.example.group5.model.User;
+import com.example.group5.model.InstructorUser;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -36,8 +36,8 @@ public class AssignInstructorService implements UserDao {
 
     @Override
     @SuppressWarnings(value={"deprecation"})
-    public List<User> getAllUsers() {
-        List<User> users = new ArrayList<>();
+    public List<InstructorUser> getAllUsers() {
+        List<InstructorUser> users = new ArrayList<>();
         try {
             String courseSelectStatement="SELECT bannerId,firstName,lastName FROM "+usersTableName;
             Class.forName("com.mysql.jdbc.Driver");
@@ -48,7 +48,7 @@ public class AssignInstructorService implements UserDao {
                 String bannerID = resultSet.getString("bannerId");
                 String firstName = resultSet.getString("firstName");
                 String lastName = resultSet.getString("lastName");
-                users.add(new User(bannerID,firstName,lastName));
+                users.add(new InstructorUser(bannerID,firstName,lastName));
             }
             statement.close();
             resultSet.close();
