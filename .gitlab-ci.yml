@@ -54,6 +54,6 @@ deploy-on-production-server:
     - sudo apt-get update -qy
     - sudo apt-get install -y ruby-dev
     - sudo gem install dpl
-    - sudo bash dpl --provider=heroku --app=$HEROKU_APP_NAME_PRODUCTION --api-key=$HEROKU_API_KEY
+    - sudo dpl --provider=heroku --app=$HEROKU_APP_NAME_PRODUCTION --api-key=$HEROKU_API_KEY
   only:
     - master
