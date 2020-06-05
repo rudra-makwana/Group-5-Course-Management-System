@@ -8,8 +8,6 @@ before_script:
 
 build:
   stage: build
-  tags:
-    - Camp_Nou
   image: gradle:alpine
   script: ./gradlew --build-cache assemble
   only:
@@ -18,8 +16,6 @@ build:
 
 test:
   stage: test
-  tags:
-    - Camp_Nou
   image: gradle:alpine
   script: ./gradlew check
   only:
@@ -28,8 +24,6 @@ test:
 
 deploy-on-test-server:
   stage: deploy
-  tags:
-    - Camp_Nou
   image: ruby:2.6
   script:
     - apt-get update -qy
@@ -41,8 +35,6 @@ deploy-on-test-server:
 
 build_production:
   stage: build
-  tags:
-    - Camp_Nou
   image: gradle:alpine
   script: ./gradlew --build-cache assemble
   only:
@@ -50,8 +42,6 @@ build_production:
 
 test_production:
   stage: test
-  tags:
-    - Camp_Nou
   image: gradle:alpine
   script: ./gradlew check
   only:
@@ -59,8 +49,6 @@ test_production:
 
 deploy-on-production-server:
   stage: deploy
-  tags:
-    - Camp_Nou
   image: ruby:2.6
   script:
     - apt-get update -qy
