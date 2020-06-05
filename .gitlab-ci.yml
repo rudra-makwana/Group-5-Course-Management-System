@@ -48,6 +48,6 @@ deploy-on-production-server:
   stage: deploy
   image: gradle:alpine
   script:
-    - sudo --provider=heroku --app=$HEROKU_APP_NAME_PRODUCTION --api-key=$HEROKU_API_KEY
+    - sudo dpl --provider=heroku --app=$HEROKU_APP_NAME_PRODUCTION --api-key=$HEROKU_API_KEY
   only:
     - master
