@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.group5.entities.User;
+import com.example.group5.model.User;
 import com.example.group5.services.LoginService;
 import com.example.group5.services.UserService;
 
