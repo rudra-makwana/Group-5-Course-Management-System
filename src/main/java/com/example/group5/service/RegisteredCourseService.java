@@ -10,10 +10,10 @@ import java.util.List;
 
 public class RegisteredCourseService implements RegisteredCourseDao {
 
-    String url = "jdbc:mysql://db-5308.cs.dal.ca/CSCI5308_5_PRODUCTION?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    String courseRegistrationTable = "CSCI5308_5_PRODUCTION.courseRegistration";
-    String username="CSCI5308_5_PRODUCTION_USER";
-    String password="CSCI5308_5_PRODUCTION_5918";
+    String url = "jdbc:mysql://db-5308.cs.dal.ca/CSCI5308_5_TEST?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    String courseRegistrationTable = "CSCI5308_5_TEST.courseRegistration";
+    String username="CSCI5308_5_TEST_USER";
+    String password="CSCI5308_5_TEST_5570";
 
     @Override
     public List<RegisteredCourses> getRegisteredCourse(String bannerID) {

@@ -10,18 +10,18 @@ import java.util.List;
 
 public class AssignInstructorService implements UserDao {
 
-    String url = "jdbc:mysql://db-5308.cs.dal.ca/CSCI5308_5_PRODUCTION?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    String courseRegistrationTable = "CSCI5308_5_PRODUCTION.courseRegistration";
-    String usersTableName = "CSCI5308_5_PRODUCTION.Users";
-    String username="CSCI5308_5_PRODUCTION_USER";
-    String password="CSCI5308_5_PRODUCTION_5918";
+    String url = "jdbc:mysql://db-5308.cs.dal.ca/CSCI5308_5_TEST?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    String courseRegistrationTable = "CSCI5308_5_TEST.courseRegistration";
+    String usersTableName = "CSCI5308_5_TEST.Users";
+    String username="CSCI5308_5_TEST_USER";
+    String password="CSCI5308_5_TEST_5570";
 
     @Override
     @SuppressWarnings("deprecation")
     public void assignAsInstructor(String bannerId, String courseID) {
         try {
             System.out.println(courseID);
-            String assignQuery = "INSERT INTO CSCI5308_5_PRODUCTION.courseRegistration VALUES (\""+courseID+"\",\""+bannerId+"\",1);";
+            String assignQuery = "INSERT INTO CSCI5308_5_TEST.courseRegistration VALUES (\""+courseID+"\",\""+bannerId+"\",1);";
             //String assignInstructorQuery = "INSERT INTO "+usersTableName+" VALUES (\""+courseID+"\",\""+bannerId+"\", 1)";
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url, username, password);

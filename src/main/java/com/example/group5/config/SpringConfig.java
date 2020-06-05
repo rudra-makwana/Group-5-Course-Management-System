@@ -39,9 +39,9 @@ public class SpringConfig {
 
         // DATABASE
         this.dbConnection = new DBConnection(
-                (0 < -1) ? System.getenv("DATABASE_URL") : "jdbc:mysql://db-5308.cs.dal.ca:3306?serverTimezone=UTC&useSSL=false",
-                (0 < -1) ? System.getenv("DATABASE_USER") : "CSCI5308_5_PRODUCTION_USER",
-                (0 < -1) ? System.getenv("DATABASE_PASSWORD") : "CSCI5308_5_PRODUCTION_5918"
+                (0 < -1) ? System.getenv("DATABASE_URL") : "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_5_TEST?serverTimezone=UTC&useSSL=false",
+                (0 < -1) ? System.getenv("DATABASE_USER") : "CSCI5308_5_TEST_USER",
+                (0 < -1) ? System.getenv("DATABASE_PASSWORD") : "CSCI5308_5_TEST_5570"
         );
         //System.getenv("DATABASE_URL").length()
         //System.getenv("DATABASE_USER").length()

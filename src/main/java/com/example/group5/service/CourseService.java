@@ -9,11 +9,11 @@ import java.util.List;
 
 public class CourseService implements CourseDao {
 
-    String url = "jdbc:mysql://db-5308.cs.dal.ca/CSCI5308_5_PRODUCTION?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    String courseTableName = "CSCI5308_5_PRODUCTION.Courses";
-    String courseRegistrationTable = "CSCI5308_5_PRODUCTION.courseRegistration";
-    String username="CSCI5308_5_PRODUCTION_USER";
-    String password="CSCI5308_5_PRODUCTION_5918";
+    String url = "jdbc:mysql://db-5308.cs.dal.ca/CSCI5308_5_TEST?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    String courseTableName = "CSCI5308_5_TEST.Courses";
+    String courseRegistrationTable = "CSCI5308_5_TEST.courseRegistration";
+    String username="CSCI5308_5_TEST_USER";
+    String password="CSCI5308_5_TEST_5570";
 
     @Override
     @SuppressWarnings("deprecation")
@@ -53,7 +53,7 @@ public class CourseService implements CourseDao {
     @SuppressWarnings("deprecation")
     public String getCourseName(String courseId) {
         String courseName = "There is some unknown error";
-        String selectCourseStatement = "select courseName from CSCI5308_5_PRODUCTION.Courses where idCourses=\""+courseId+"\"";
+        String selectCourseStatement = "select courseName from CSCI5308_5_TEST.Courses where idCourses=\""+courseId+"\"";
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url,username, password);
