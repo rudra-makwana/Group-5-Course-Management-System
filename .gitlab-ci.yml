@@ -26,10 +26,7 @@ deploy-on-test-server:
   stage: deploy
   image: gradle:alpine
   script:
-    - sudo apt-get update -qy
-    - sudo apt-get install -y ruby-dev
-    - sudo gem install dpl
-    - sudo bash dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+    - sudo dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
   only:
       - develop
 
@@ -51,9 +48,6 @@ deploy-on-production-server:
   stage: deploy
   image: gradle:alpine
   script:
-    - sudo apt-get update -qy
-    - sudo apt-get install -y ruby-dev
-    - sudo gem install dpl
-    - sudo dpl --provider=heroku --app=$HEROKU_APP_NAME_PRODUCTION --api-key=$HEROKU_API_KEY
+    - sudo --provider=heroku --app=$HEROKU_APP_NAME_PRODUCTION --api-key=$HEROKU_API_KEY
   only:
     - master
