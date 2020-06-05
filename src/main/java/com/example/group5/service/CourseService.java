@@ -1,15 +1,14 @@
 package com.example.group5.service;
 
-import com.example.group5.DAO.ICourseDao;
-import com.example.group5.config.SpringConfig;
-import com.example.group5.DAO.ICourseDao;
+import com.example.group5.configure.SpringConfig;
+import com.example.group5.dao.CourseDao;
 import com.example.group5.model.Course;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseService implements ICourseDao {
+public class CourseService implements CourseDao {
 
     String url = "jdbc:mysql://db-5308.cs.dal.ca/CSCI5308_5_TEST?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     String courseTableName = "CSCI5308_5_TEST.Courses";

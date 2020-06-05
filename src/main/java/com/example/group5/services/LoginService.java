@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.group5.DBConnection;
 
+import com.example.group5.model.User;
+
+
 /*
  Created by Chetanpreet Singh Sachdeva
  */

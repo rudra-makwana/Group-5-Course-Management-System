@@ -2,12 +2,12 @@ package com.example.group5.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.group5.model.User;
 import com.example.group5.services.LoginService;
 import com.example.group5.services.UserService;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * This is controller class for mapping requests with responses
@@ -15,7 +15,8 @@ import com.example.group5.services.UserService;
  * updated by Chetanpreet Singh for login
  *
  */
-@Controller
+@RestController
+@RequestMapping("/")
 public class RegisterController {
 
 	//Login code by Chetanpreet Singh
@@ -29,11 +30,21 @@ public class RegisterController {
 	
 
 
-	@PostMapping("/login")
-	public String loginAction(User user, Model model,LoginService loginService)       //User object(From the form submission) and Model object
+	@RequestMapping(value = "/loginaction",method = RequestMethod.POST)
+	public ModelAndView loginAction(@RequestParam(name = "user") User user)       //User object(From the form submission) and Model object
 	{
+		LoginService loginService = new LoginService();
+		ModelAndView modelAndView = new ModelAndView();
 		String response = loginService.findUser(user);
-		return response;
+		if(response == "admin"){
+			modelAndView.setViewName("AdminDashboard");
+			return modelAndView;
+		}
+		else {
+			modelAndView.addObject("bannerID",user.getBannerId());
+			modelAndView.setViewName("userdashboard");
+			return modelAndView;
+		}
 	}
 
 
