@@ -46,7 +46,7 @@ public class RegisterController {
 	@PostMapping("/register")
 	public String registerAction(User user, Model model, UserService userService) {
 
-		if(userService.bannerIdExists(user.getBannerId())) 
+		if(userService.bannerIdExists(user.getBannerID()))
 		{
 			model.addAttribute("bannerIdAlreadyExists", true);
 			return "register";
@@ -61,7 +61,7 @@ public class RegisterController {
 		}
 		
 		
-		if(userService.validateBannerId(user.getBannerId())) 
+		if(userService.validateBannerId(user.getBannerID()))
 		{
 			model.addAttribute("bannerIdError", true);
 			return "register";
