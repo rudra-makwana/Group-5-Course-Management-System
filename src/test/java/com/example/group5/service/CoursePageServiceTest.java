@@ -2,6 +2,7 @@ package com.example.group5.service;
 
 import com.example.group5.DAO.IUserDao;
 import com.example.group5.DaoMock.UserMock;
+import com.example.group5.config.SpringConfig;
 import com.example.group5.model.User;
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +24,6 @@ class CoursePageServiceTest {
     @Test
     void makeStudentTA() {
         // cannot test
-
+        assertTrue(SpringConfig.getObject().getCoursePageService().makeStudentTA("CSCI-5308", "boo843516"));
     }
 }

@@ -4,7 +4,6 @@ import com.example.group5.controller.CoursePageController;
 import com.example.group5.repository.DBConnection;
 import com.example.group5.service.CoursePageService;
 import com.example.group5.service.CourseService;
-import com.example.group5.service.ProfileManagementService;
 import com.example.group5.utils.MailUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

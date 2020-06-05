@@ -15,5 +15,4 @@ public class UserMock implements IUserDao {
         return arrayList;
     }
 
-    public
 }
