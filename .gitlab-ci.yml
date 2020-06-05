@@ -8,8 +8,6 @@ before_script:
 
 build:
   stage: build
-  tags:
-    - grad
   image: gradle:alpine
   script: ./gradlew --build-cache assemble
   only:
@@ -18,8 +16,6 @@ build:
 
 test:
   stage: test
-  tags:
-    - grad
   image: gradle:alpine
   script: ./gradlew check
   only:
@@ -28,8 +24,6 @@ test:
 
 deploy-on-test-server:
   stage: deploy
-  tags:
-    - dalfcs_gitlab_docker_ci
   image: ruby:2.6
   script:
     - apt-get update -qy
