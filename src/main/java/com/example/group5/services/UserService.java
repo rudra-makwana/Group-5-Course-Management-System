@@ -40,7 +40,7 @@ public class UserService extends DBConnection implements IUserExists, IUserValid
 	 */
 	public void addUser(User user) {
 
-		String query="insert into CSCI5308_5_TEST.Users (bannerId, firstName, lastName, emailID, password) values('"+user.getBannerId()+"','"+user.getFirstName()+"','"+user.getLastName()+"','"+user.getEmailID()+"','"+user.getPassword()+"')";
+		String query="insert into CSCI5308_5_TEST.Users (bannerId, firstName, lastName, emailID, password) values('"+user.getBannerID()+"','"+user.getFirstName()+"','"+user.getLastName()+"','"+user.getEmailID()+"','"+user.getPassword()+"')";
 		try {
 			closeConnection(statement,connect);
 			connect=openConnection();

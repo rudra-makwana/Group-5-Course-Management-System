@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
 public class Group5Application {
-
 	public static void main(String[] args) {
 		SpringApplication.run(Group5Application.class, args);
 	}
