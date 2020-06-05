@@ -1,0 +1,34 @@
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+  GIT_STRATEGY: clone
+
+before_script:
+  - chmod +x ./gradlew
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+
+build:
+  stage: build
+  image: gradle:alpine
+  script: ./gradlew --build-cache assemble
+  only:
+    refs:
+      - branches
+
+test:
+  stage: test
+  image: gradle:alpine
+  script: ./gradlew check
+  only:
+    refs:
+      - branches
+
+deploy-on-test-server:
+  stage: deploy
+  image: ruby:2.6
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+  only:
+      - develop
