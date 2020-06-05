@@ -15,8 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
  * updated by Chetanpreet Singh for login
  *
  */
-@RestController
-@RequestMapping("/")
+
+@Controller
+//@RequestMapping("/")
 public class RegisterController {
 
 	//Login code by Chetanpreet Singh
