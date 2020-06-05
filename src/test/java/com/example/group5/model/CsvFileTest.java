@@ -19,7 +19,7 @@ class CsvFileTest {
     @Test
     public void ConstructorTest(){
         ICsvFileDao iCsvFileDao = new CsvFileMock();
-        CsvFile csvFile = new CsvFile();
+        CsvFile csvFile = new CsvFile("D:/DAL/Summer_2020/Adv_SDC__CSCI_5308/file5.csv", iCsvFileDao);
         assertNull(csvFile.getCsvFile());
     }
 

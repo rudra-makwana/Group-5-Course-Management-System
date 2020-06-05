@@ -27,6 +27,7 @@ public class CoursePageController {
                                  @RequestParam(name = "roleId", defaultValue="3") Integer roleID, Model model) {
 
         model.addAttribute("Error", false);
+        model.addAttribute("c_id", course_id);
         switch (roleID){
             case 1:
                 model.addAttribute("Instructor", true);
@@ -57,7 +58,7 @@ public class CoursePageController {
 
     @RequestMapping(value = "/assign-TA", method = RequestMethod.POST)
     public String assignTa(@RequestParam(name = "assignedTA") Object studentID, @RequestParam(name = "C_ID") String courseID, Model model){
-        if(SpringConfig.getObject().getCoursePageService().makeStudentTA(courseID, studentID)){
+        if(SpringConfig.getObject().getCoursePageService().makeStudentTA(courseID, (String) studentID)){
             model.addAttribute("error", false);
         } else {
             model.addAttribute("error",true);
@@ -71,25 +72,11 @@ public class CoursePageController {
     }
 
     @PostMapping("/course-page/fetchCSV")
-    public String fetchCSVForm(@RequestParam("file") MultipartFile file, Model model) {
-        try {
-            Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()));
-            CSVReader csvReader = new CSVReader(reader);
-            System.out.println(reader);
-
-            String[] nextRecord;
-
-            while ((nextRecord = csvReader.readNext()) != null) {
-                System.out.println("Name : " + nextRecord[0]);
-                System.out.println("Course : " + nextRecord[1]);
-                System.out.println("Email : " + nextRecord[2]);
-                System.out.println("Country : " + nextRecord[3]);
-                System.out.println("==========================");
-            }
-//            model.addAttribute("users", users);
+    public String fetchCSVForm(@RequestParam(name = "c_id") String course_id,
+                               @RequestParam("file") MultipartFile file, Model model) {
+        if(SpringConfig.getObject().getCoursePageService().registerStudents(course_id, file)){
             model.addAttribute("status", true);
-        } catch (CsvValidationException | IOException e) {
-            e.printStackTrace();
+        } else{
             model.addAttribute("message", "An error occurred while processing the CSV file.");
             model.addAttribute("status", false);
         }
