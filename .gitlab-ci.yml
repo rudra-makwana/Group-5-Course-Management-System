@@ -26,28 +26,14 @@ deploy-on-test-server:
   stage: deploy
   image: ruby:2.3
   script:
-    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+    - sudo -S dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
   only:
       - develop
-
-build_production:
-  stage: build
-  image: gradle:alpine
-  script: bash ./gradlew --build-cache assemble
-  only:
-    - master
-
-test_production:
-  stage: test
-  image: gradle:alpine
-  script: bash ./gradlew check
-  only:
-    - master
 
 deploy-on-production-server:
   stage: deploy
   image: ruby:2.3
   script:
-    - dpl --provider=heroku --app=$HEROKU_APP_NAME_PRODUCTION --api-key=$HEROKU_API_KEY
+    - sudo -S dpl --provider=heroku --app=$HEROKU_APP_NAME_PRODUCTION --api-key=$HEROKU_API_KEY
   only:
     - master
