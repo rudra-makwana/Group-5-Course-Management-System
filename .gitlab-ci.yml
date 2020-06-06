@@ -26,7 +26,6 @@ deploy-on-test-server:
   stage: deploy
   image: ruby:2.3
   script:
-    - sudo chmod 777 /home/gitlab-runner
     - sudo -S dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
   only:
       - develop
@@ -35,7 +34,6 @@ deploy-on-production-server:
   stage: deploy
   image: ruby:2.3
   script:
-    - sudo chmod 777 /home/gitlab-runer
     - sudo -S dpl --provider=heroku --app=$HEROKU_APP_NAME_PRODUCTION --api-key=$HEROKU_API_KEY
   only:
     - master
