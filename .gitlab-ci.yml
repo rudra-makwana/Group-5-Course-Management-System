@@ -34,7 +34,6 @@ deploy-on-production-server:
   stage: deploy
   image: ruby:2.3
   script:
-    - apt-get update -qy
     - sudo -S dpl --provider=heroku --app=$HEROKU_APP_NAME_PRODUCTION --api-key=$HEROKU_API_KEY
   only:
     - master
