@@ -1,22 +1,10 @@
 package com.example.group5.controller;
 
 import com.example.group5.config.SpringConfig;
-import com.example.group5.utils.MailUtil;
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvValidationException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.mail.MailException;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.mail.MessagingException;
-import java.io.*;
-import java.util.Properties;
 
 @Controller
 public class CoursePageController {
@@ -57,13 +45,13 @@ public class CoursePageController {
     }
 
     @RequestMapping(value = "/assign-TA", method = RequestMethod.POST)
-    public String assignTa(@RequestParam(name = "assignedTA") Object studentID, @RequestParam(name = "C_ID") String courseID, Model model){
+    public String assignTa(@RequestParam(name = "assignedTA") Object studentID, @RequestParam(name = "c_id") String courseID, Model model){
         if(SpringConfig.getObject().getCoursePageService().makeStudentTA(courseID, (String) studentID)){
             model.addAttribute("error", false);
         } else {
-            model.addAttribute("error",true);
+            model.addAttribute("error",false);
         }
-        return "Ta-assign";
+        return "Ta-assign-success";
     }
 
     @GetMapping("/file-upload-status")
