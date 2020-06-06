@@ -15,7 +15,7 @@
             <label>Select a student to assign as a TA</label>
             <input list="users" name="assignedTA" id="assignedTA">
             <datalist id="users">
-                <option th:each="user : ${userList}" th:value="${user.bannerId}" th:text="|${user.firstName} ${user.lastName}|"></option>
+                <option th:each="user : ${userList}" th:value="${user.bannerID}" th:text="|${user.firstName} ${user.lastName}|"></option>
             </datalist>
             <br><br>
             <button type="submit" class="btn btn-primary">Make TA</button>
