@@ -22,7 +22,7 @@ public class DBConnectionTest extends DBConnection{
 	 */
 	@Test
 	public void testOpenConnection() {
-		DBConnection dbConnection = new DBConnectionTest();
+		DBConnection dbConnection = new DBConnection();
 		Connection expected= dbConnection.openConnection();
 		assertEquals(expected!=null, true);
 	}
@@ -33,7 +33,7 @@ public class DBConnectionTest extends DBConnection{
 	 */
 	@Test
 	public void testCloseConnection() {
-		DBConnection dbConnection = new DBConnectionTest();
+		DBConnection dbConnection = new DBConnection();
 		dbConnection.closeConnection(st,con);
 		assertEquals(st!=null, false);
 		assertEquals(con!=null, false);
