@@ -2,12 +2,12 @@ package com.example.group5.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.group5.model.User;
 import com.example.group5.services.LoginService;
 import com.example.group5.services.UserService;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * This is controller class for mapping requests with responses
@@ -15,7 +15,9 @@ import com.example.group5.services.UserService;
  * updated by Chetanpreet Singh for login
  *
  */
+
 @Controller
+//@RequestMapping("/")
 public class RegisterController {
 
 	//Login code by Chetanpreet Singh
@@ -25,15 +27,25 @@ public class RegisterController {
 		model.addAttribute("user", new User());    //User going to form
 		return "login";
 	}
-	
-	
 
-
-	@PostMapping("/login")
-	public String loginAction(User user, Model model,LoginService loginService)       //User object(From the form submission) and Model object
+	@RequestMapping(value = "/loginaction",method = RequestMethod.POST)
+	public ModelAndView loginAction(@RequestParam(name = "emailID") String emailID, @RequestParam(name = "password") String password)       //User object(From the form submission) and Model object
 	{
-		String response = loginService.findUser(user);
-		return response;
+		LoginService loginService = new LoginService();
+		ModelAndView modelAndView = new ModelAndView();
+		String[] response = loginService.findUser(emailID, password);
+		if(response[0] == "admin"){
+			modelAndView.setViewName("AdminWelcomePage");
+			return modelAndView;
+		}
+		else if (response[0] == "noadmin"){
+			modelAndView.addObject("bannerID",response[1]);
+			modelAndView.setViewName("WelcomeDashboard");
+			return modelAndView;
+		}else {
+			modelAndView.setViewName("loginError");
+			return modelAndView;
+		}
 	}
 
 
@@ -46,7 +58,7 @@ public class RegisterController {
 	@PostMapping("/register")
 	public String registerAction(User user, Model model, UserService userService) {
 
-		if(userService.bannerIdExists(user.getBannerId())) 
+		if(userService.bannerIdExists(user.getBannerID()))
 		{
 			model.addAttribute("bannerIdAlreadyExists", true);
 			return "register";
@@ -61,7 +73,7 @@ public class RegisterController {
 		}
 		
 		
-		if(userService.validateBannerId(user.getBannerId())) 
+		if(userService.validateBannerId(user.getBannerID()))
 		{
 			model.addAttribute("bannerIdError", true);
 			return "register";
