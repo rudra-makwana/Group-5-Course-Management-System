@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <title>Registration Page</title>
 </head>
@@ -17,7 +17,7 @@
     </p>
     </div>
 	<label for="bannerId"><b>Banner ID</b></label>
-    <input type="text" placeholder="Banner ID" th:field="*{bannerId}" id="bannerId" required>
+    <input type="text" placeholder="Banner ID" th:field="*{bannerID}" id="bannerId" required>
     <div class="alert alert-info" th:if="${bannerIdError}">
        <p class="text text-center"> 
    	Please enter a valid banner Id of size 5 to 9 only 

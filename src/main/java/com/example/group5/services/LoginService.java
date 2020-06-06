@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.group5.DBConnection;
 
+import com.example.group5.model.User;
+
+
 /*
  Created by Chetanpreet Singh Sachdeva
  */
@@ -20,13 +23,13 @@ public class LoginService  {
 
 	private Connection connect = null;
 	private  Statement statement = null;
-	public String findUser(User user) {
-		String sql ="Select emailID,password,isAdmin from CSCI5308_5_TEST.Users where emailID='"+user.getEmailID()+"' and password='"+user.getPassword()+"';";
+	public String[] findUser(String emailID, String password) {
+		String sql ="Select bannerId,emailID,password,isAdmin from CSCI5308_5_TEST.Users where emailID='"+emailID+"' and password='"+password+"';";
 		String rs="";
 		String adminemail = "";
 		String isAdmin = "N";
-		
-		
+		String bannerID = null;
+
 		try {
 			
 			//Establishing DB connection
@@ -35,13 +38,14 @@ public class LoginService  {
 			statement = connect.createStatement();
 			statement.executeQuery("use CSCI5308_5_TEST;");
 			ResultSet resultSet = statement.executeQuery(sql);    //Query executed
-
 			if(resultSet.next())            //Fetching results from resultSET
 			{
-				if(resultSet.getString("isAdmin").equals("Y"))     //if user is admin
+				if(resultSet.getString("isAdmin").equalsIgnoreCase("y"))     //if user is admin
 					rs = "admin";
-				else
-					rs= "noadmin";                     //if user is not admin
+				else {
+					rs = "noadmin";//if user is not admin
+					bannerID = resultSet.getString("bannerId");
+				}
 			}
 			else
 				rs = "loginError";                     //if user is not present
@@ -70,8 +74,10 @@ public class LoginService  {
 				System.out.println(e.getMessage());
 			}
 		}
-
-		return rs;
+		String loginResponse[] = new String[2];
+		loginResponse[0] = rs;
+		loginResponse[1] = bannerID;
+		return loginResponse;
 
 
 	}

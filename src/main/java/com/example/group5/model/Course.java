@@ -1,6 +1,7 @@
 package com.example.group5.model;
 
 public class Course {
+
     private String courseId;
     private String courseName;
 
