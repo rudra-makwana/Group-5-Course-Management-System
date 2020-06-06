@@ -17,7 +17,7 @@
     <div>
         <h3 style="float: left; margin-top: 10px; margint-right: 10px; text-decoration: bold" align="center">Course List:</h3>
         <div align="right">
-            <form th:action="@{/login}" method="post" style="margin-top: 10px;">
+            <form th:action="@{/login}" method="get" style="margin-top: 10px;">
                 <input type="submit" id="logOutButton" value="Log Out">
             </form>
         </div>
@@ -39,9 +39,6 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:if="${Courses.empty}">
-                    <td colspan="2"> No courses available </td>
-                </tr>
                 <tr th:each="course: ${Courses}">
                     <td><a th:href="@{/admincoursepage(cid=${course.courseId})}" th:text="${course.courseId}" target="_self"></a></td>
                     <td><a th:href="@{/admincoursepage(cid=${course.courseId})}" th:text="${course.courseName}" target="_self"></a></td>

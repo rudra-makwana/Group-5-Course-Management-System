@@ -21,7 +21,7 @@ public class RegisteredCourseController {
     CourseService courseService = SpringConfig.getObject().getCourseService();
 
     @GetMapping("/userdashboard")
-    public ModelAndView getRegisteredCourses(@RequestParam(name = "bannerid", defaultValue = "123456") String bannerId, ModelAndView modelAndView){
+    public ModelAndView getRegisteredCourses(@RequestParam(name = "bannerid") String bannerId, ModelAndView modelAndView){
         List<RegisteredCourses> registeredCourses = registeredCourseService.getRegisteredCourse(bannerId);
 
         if(registeredCourses.isEmpty()){

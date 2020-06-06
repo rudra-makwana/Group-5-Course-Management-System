@@ -27,23 +27,23 @@ public class RegisterController {
 		model.addAttribute("user", new User());    //User going to form
 		return "login";
 	}
-	
-	
-
 
 	@RequestMapping(value = "/loginaction",method = RequestMethod.POST)
-	public ModelAndView loginAction(@RequestParam(name = "user") User user)       //User object(From the form submission) and Model object
+	public ModelAndView loginAction(@RequestParam(name = "emailID") String emailID, @RequestParam(name = "password") String password)       //User object(From the form submission) and Model object
 	{
 		LoginService loginService = new LoginService();
 		ModelAndView modelAndView = new ModelAndView();
-		String response = loginService.findUser(user);
-		if(response == "admin"){
-			modelAndView.setViewName("AdminDashboard");
+		String[] response = loginService.findUser(emailID, password);
+		if(response[0] == "admin"){
+			modelAndView.setViewName("AdminWelcomePage");
 			return modelAndView;
 		}
-		else {
-			modelAndView.addObject("bannerID",user.getBannerID());
-			modelAndView.setViewName("userdashboard");
+		else if (response[0] == "noadmin"){
+			modelAndView.addObject("bannerID",response[1]);
+			modelAndView.setViewName("WelcomeDashboard");
+			return modelAndView;
+		}else {
+			modelAndView.setViewName("loginError");
 			return modelAndView;
 		}
 	}
